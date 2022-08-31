@@ -36,6 +36,9 @@
 </template>
 
 <script>
+// importando o axios direto no componente
+// import axios from "axios";
+
 export default {
   data() {
     return {
@@ -55,6 +58,8 @@ export default {
       // console.log(this.usuario);
     },
     obterUsuarios() {
+      // Obter o axios lovalmente importando direto no componente
+      // axios.get("https://curso-vue-75acf-default-rtdb.firebaseio.com/usuarios.json").then((response) => {
       this.$http.get("usuarios.json").then((response) => {
         this.usuarios = response.data;
         // console.log(this.usuarios);
