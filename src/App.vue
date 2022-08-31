@@ -20,7 +20,18 @@
       </b-form-group>
       <hr />
       <b-button @click="salvar" size="lg" variant="primary">Salvar</b-button>
+      <b-button @click="obterUsuarios" size="lg" variant="success" class="ml-2"
+        >Obter Usuários</b-button
+      >
     </b-card>
+    <hr />
+    <b-list-group>
+      <b-list-group-item v-for="(usuario, id) in usuarios" :key="id">
+        <strong>Nome: </strong> {{ usuario.nome }}<br />
+        <strong>E-mail: </strong> {{ usuario.email }}<br />
+        <strong>ID: </strong> {{ id }}
+      </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 
@@ -28,6 +39,7 @@
 export default {
   data() {
     return {
+      usuarios: [],
       usuario: {
         nome: "",
         email: "",
@@ -41,6 +53,12 @@ export default {
         this.usuario.email = "";
       });
       // console.log(this.usuario);
+    },
+    obterUsuarios() {
+      this.$http.get("usuarios.json").then((response) => {
+        this.usuarios = response.data;
+        // console.log(this.usuarios);
+      });
     },
   },
   // created() {
