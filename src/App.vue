@@ -62,7 +62,7 @@ export default {
       // axios.get("https://curso-vue-75acf-default-rtdb.firebaseio.com/usuarios.json").then((response) => {
       this.$http.get("usuarios.json").then((response) => {
         this.usuarios = response.data;
-        // console.log(this.usuarios);
+        console.log(this.usuarios);
       });
     },
   },
