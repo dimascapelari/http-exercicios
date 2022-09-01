@@ -70,11 +70,18 @@ export default {
       this.$http.delete(`/usuarios/${id}.json`).then(() => this.limpar());
     },
     salvar() {
-      this.$http.post("usuarios.json", this.usuario).then(() => {
-        this.limpar();
-        // this.usuario.nome = "";
-        // this.usuario.email = "";
-      });
+      // caso o id esteja setado usa o patch, senão o post
+      const metodo = this.id ? "patch" : "post";
+      const finalUrl = this.id ? `/${this.id}.json` : ".json";
+      this.$http[metodo](`/usuarios${finalUrl}`, this.usuario).then((_) =>
+        this.limpar()
+      );
+
+      // this.$http.post("usuarios.json", this.usuario).then(() => {
+      //   this.limpar();
+      // this.usuario.nome = "";
+      // this.usuario.email = "";
+      // });
       // console.log(this.usuario);
     },
     obterUsuarios() {
